@@ -20,10 +20,10 @@ namespace GetThroughTheBridgeRiddle
             }
             Array.Sort(sprinters);
 
-            for (int i = fastSprintersNeeded; i > 1; --i)
+            for (int i = 0; i < fastSprintersNeeded - 1; ++i)
             {
                 //go left
-                time += sprinters[i - 1];
+                time += sprinters[i + 1];
                 //go right
                 time += sprinters[0];
             }
@@ -34,11 +34,12 @@ namespace GetThroughTheBridgeRiddle
                 // fast sprinter right
                 time += sprinters[1 + i];
             }
-            for (int i = afterSlowSprintersPassed; i > 1; --i)
+            for (int i = 0; i < afterSlowSprintersPassed - 1; ++i)
             {
                 //go left
-                time += sprinters[i - 1];
-                if (i > 2)
+                time += sprinters[i + 1];
+                // if still some sprinters on right
+                if (i < afterSlowSprintersPassed - 2)
                 {
                     //go right
                     time += sprinters[0];
